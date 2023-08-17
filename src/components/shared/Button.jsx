@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const Button = ({
     variant,
@@ -23,10 +22,10 @@ const Button = ({
 
     switch (variant) {
         case "solid":
-            defaultStyle = `${defaultStyle} text-white bg-zinc-800 hover:bg-amber-500 hover:text-black`;
+            defaultStyle = `${defaultStyle} text-white bg-slate-500 hover:bg-blue-500`;
             break;
         case "outline":
-            defaultStyle = `${defaultStyle} border border-zinc-800 hover:border-amber-700 hover:text-amber-700`;
+            defaultStyle = `${defaultStyle} border border-zinc-400 hover:border-blue-500 hover:text-blue-500`;
             break;
         case "ghost":
             defaultStyle = `${defaultStyle} hover:bg-zinc-300`;
