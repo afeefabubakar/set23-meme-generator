@@ -12,12 +12,12 @@ export const SettingsPanel = ({ children }) => {
         case "left":
             positionSettings = `${
                 settingsProp.showSetting ? "left-10" : "-left-96"
-            } px-8 py-12 pt-16 top-1/2 w-96 h-[600px] -translate-y-1/2`;
+            } px-8 py-12 pt-16 top-1/2 w-96 h-[900px] -translate-y-1/2`;
             break;
         case "right":
             positionSettings = `${
                 settingsProp.showSetting ? "right-10" : "-right-96"
-            } px-8 py-12 pt-16 top-1/2 w-96 h-[600px] -translate-y-1/2`;
+            } px-8 py-12 pt-16 top-1/2 w-96 h-[800px] -translate-y-1/2`;
             break;
         case "down":
             positionSettings = `${
@@ -86,12 +86,7 @@ export const SettingsHeader = ({ title, subtitle }) => {
 
 export const SettingsBody = () => {
     const { memeIndex, setMemeCaption } = useContext(MemeContext);
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { isSubmitSuccessful, errors },
-    } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = (data) => setMemeCaption(data);
 
@@ -100,14 +95,30 @@ export const SettingsBody = () => {
         for (let i = 0; i < MEMES[memeIndex].box_count; i++) {
             inputArray.push(
                 <div key={i} className="w-full">
-                    <label htmlFor={`text-${i}`}>{`Insert caption ${
+                    <label htmlFor={`text${i}`}>{`Insert caption ${
                         i + 1
                     }`}</label>
                     <input
                         className="block border border-gray-400 px-2 py-1 w-full"
-                        id={`text-${i}`}
-                        {...register(`text-${i}`)}
+                        id={`text${i}`}
+                        {...register(`text${i}`)}
                     />
+                    <div className="flex items-center gap-3">
+                        <label htmlFor={`color${i}`}>Color</label>
+                        <input
+                            type="color"
+                            id={`color${i}`}
+                            {...register(`color${i}`)}
+                        />
+                        <label htmlFor={`size${i}`}>Size</label>
+                        <input
+                            type="number"
+                            id={`size${1}`}
+                            defaultValue={64}
+                            className="w-8 text-center"
+                            {...register(`size${i}`)}
+                        />
+                    </div>
                 </div>
             );
         }

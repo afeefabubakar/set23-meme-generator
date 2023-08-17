@@ -8,22 +8,44 @@ const MemePanel = () => {
     const memeImg = MEMES[memeIndex].url;
 
     const generateCaption = () => {
-        return Object.values(memeCaption).map((caption, index) => {
+        const memeCaptionArray = [];
+        const memeCaptionDomArray = [];
+        const memeCaptionColorArray = [];
+        const memeCaptionSizeArray = [];
+        Object.entries(memeCaption).forEach((entry) => {
+            if (/(text)/.test(entry[0])) {
+                memeCaptionArray.push(entry);
+            } else if (/(color)/.test(entry[0])) {
+                memeCaptionColorArray.push(entry);
+            } else {
+                memeCaptionSizeArray.push(entry);
+            }
+        });
+
+        memeCaptionArray.forEach((caption, index) => {
             let topValue = index * 100;
-            return (
+            let color = memeCaptionColorArray[index][1];
+            let size = memeCaptionSizeArray[index][1];
+
+            memeCaptionDomArray.push(
                 <Draggable key={index} bounds={`parent`}>
                     <div
-                        className={`text-slate-50 text-6xl absolute left-1/2 z-5`}
+                        className={`text-6xl absolute left-1/2 z-5`}
                         style={{
+                            color: color,
                             top: topValue,
                         }}>
-                        <p className="drop-shadow-[0_0_1.2px_rgb(0,0,0)]">
-                            {caption}
+                        <p
+                            className="drop-shadow-[0_0_1.2px_rgb(0,0,0)]"
+                            style={{ fontSize: `${size}px` }}>
+                            {caption[1]}
                         </p>
                     </div>
                 </Draggable>
             );
         });
+
+        return memeCaptionDomArray;
     };
 
     useEffect(() => {
