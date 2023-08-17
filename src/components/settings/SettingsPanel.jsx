@@ -3,6 +3,7 @@ import MEMES from "../../data/meme.json";
 import Button from "../shared/Button";
 import { useForm } from "react-hook-form";
 import { SettingsContext } from "./Settings";
+import { MemeContext } from "../../App";
 
 export const SettingsPanel = ({ children }) => {
     const { settingsProp, setSettingsProp } = useContext(SettingsContext);
@@ -84,7 +85,7 @@ export const SettingsHeader = ({ title, subtitle }) => {
 };
 
 export const SettingsBody = () => {
-    const { memeIndex } = useContext(SettingsContext);
+    const { memeIndex } = useContext(MemeContext);
     const {
         register,
         handleSubmit,
@@ -121,8 +122,8 @@ export const SettingsBody = () => {
 };
 
 export const SettingsSubHeader = ({ primaryButton }) => {
-    const { settingsProp, setMemeIndex, memeIndex } =
-        useContext(SettingsContext);
+    const { setMemeIndex, memeIndex } = useContext(MemeContext);
+    const { settingsProp } = useContext(SettingsContext);
     let settingsPosition = settingsProp.position;
 
     let flexSetting;

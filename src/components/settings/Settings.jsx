@@ -11,7 +11,6 @@ import { closeButtonStyle } from "../../assets/tailwind/button";
 export const SettingsContext = createContext(null);
 
 const Settings = () => {
-    const [memeIndex, setMemeIndex] = useState(0);
     const [settingsProp, setSettingsProp] = useState({
         showSetting: false,
         position: "left",
@@ -19,8 +18,7 @@ const Settings = () => {
     });
 
     return (
-        <SettingsContext.Provider
-            value={{ settingsProp, setSettingsProp, memeIndex, setMemeIndex }}>
+        <SettingsContext.Provider value={{ settingsProp, setSettingsProp }}>
             <SettingsPanel>
                 <Button
                     variant={"solid"}
