@@ -44,11 +44,12 @@ export const SettingsPanel = ({ children }) => {
                         right: "-9.75rem",
                         top: "50%",
                         borderRadius: "0.5rem 0.5rem 0 0",
+                        fontSize: "32px",
                     }}
                     onClick={() =>
                         setSettingsProp({ ...settingsProp, showSetting: true })
                     }>
-                    Settings
+                    ⚙
                 </Button>
                 {children}
             </div>
@@ -98,9 +99,11 @@ export const SettingsBody = () => {
         for (let i = 0; i < MEMES[memeIndex].box_count; i++) {
             inputArray.push(
                 <div key={i}>
-                    <label htmlFor={`text-${i}`}>{`Text ${i + 1}`}</label>
+                    <label htmlFor={`text-${i}`}>{`Insert caption ${
+                        i + 1
+                    }`}</label>
                     <input
-                        className="block border border-gray-400 px-2 py-1"
+                        className="block border border-gray-400 px-2 py-1 w-full"
                         id={`text-${i}`}
                         {...register(`text-${i}`)}
                     />
@@ -111,7 +114,7 @@ export const SettingsBody = () => {
         return inputArray;
     };
     return (
-        <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-2 w-full" onSubmit={handleSubmit(onSubmit)}>
             {generateInputBox()}
         </form>
     );
