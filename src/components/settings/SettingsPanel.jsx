@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MEMES from "../../data/meme.json";
 import Button from "../shared/Button";
 import { useForm } from "react-hook-form";
@@ -36,7 +36,7 @@ export const SettingsPanel = ({ children }) => {
     return (
         <>
             <div
-                className={`bg-slate-300 rounded-lg p-6 z-10 transition-all duration-[500ms] absolute flex flex-col gap-8 items-center ${positionSettings}`}>
+                className={`bg-slate-300 rounded-lg p-6 z-10 transition-all duration-[500ms] absolute flex flex-col gap-6 items-center ${positionSettings}`}>
                 <Button
                     variant={"solid"}
                     customStyle={{
@@ -85,21 +85,21 @@ export const SettingsHeader = ({ title, subtitle }) => {
 };
 
 export const SettingsBody = () => {
-    const { memeIndex } = useContext(MemeContext);
+    const { memeIndex, setMemeCaption } = useContext(MemeContext);
     const {
         register,
         handleSubmit,
-        watch,
-        formState: { errors },
+        reset,
+        formState: { isSubmitSuccessful, errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => setMemeCaption(data);
 
     const generateInputBox = () => {
         const inputArray = [];
         for (let i = 0; i < MEMES[memeIndex].box_count; i++) {
             inputArray.push(
-                <div key={i}>
+                <div key={i} className="w-full">
                     <label htmlFor={`text-${i}`}>{`Insert caption ${
                         i + 1
                     }`}</label>
@@ -114,8 +114,17 @@ export const SettingsBody = () => {
 
         return inputArray;
     };
+
+    useEffect(() => {
+        reset();
+    }, [memeIndex]);
+
     return (
-        <form className="space-y-2 w-full" onSubmit={handleSubmit(onSubmit)}>
+        <form
+            key={memeIndex}
+            className="flex flex-col items-center space-y-2 w-full"
+            onSubmit={handleSubmit(onSubmit)}>
+            <Button variant={"outline"}>Generate caption</Button>
             {generateInputBox()}
         </form>
     );
