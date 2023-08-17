@@ -1,10 +1,10 @@
 import MemePanel from "./components/MemePanel";
-import SettingsPanel from "./components/SettingsPanel";
+import Settings from "./components/settings/Settings";
 
 function App() {
     return (
-        <div className="flex justify-center items-center w-screen h-screen bg-black">
-            <SettingsPanel />
+        <div className="flex justify-center items-center w-screen h-screen bg-slate-800">
+            <Settings />
             <MemePanel />
         </div>
     );
