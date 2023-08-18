@@ -98,7 +98,7 @@ export const SettingsBody = () => {
                     <label htmlFor={`text${i}`}>{`Insert caption ${
                         i + 1
                     }`}</label>
-                    <input
+                    <textarea
                         className="block border border-gray-400 px-2 py-1 w-full"
                         id={`text${i}`}
                         {...register(`text${i}`)}

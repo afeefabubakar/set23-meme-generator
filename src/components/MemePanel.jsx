@@ -36,7 +36,7 @@ const MemePanel = () => {
                             top: topValue,
                         }}>
                         <p
-                            className="drop-shadow-[0_0_1.2px_rgb(0,0,0)]"
+                            className="drop-shadow-[0_0_1.2px_rgb(0,0,0)] whitespace-pre-wrap"
                             style={{ fontSize: `${size}px` }}>
                             {caption[1]}
                         </p>
